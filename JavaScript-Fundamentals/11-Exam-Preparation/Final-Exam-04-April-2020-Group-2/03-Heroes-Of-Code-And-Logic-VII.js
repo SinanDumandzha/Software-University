@@ -80,7 +80,7 @@ function printGameResult(input) {
         action = actions.shift();
     }
 
-    let sortedHeroes = Object.entries(heroes).sort((a, b) => (b[1].HP - a[1].HP) || (a[1].localeComapare(b[1])));
+    let sortedHeroes = Object.entries(heroes).sort((a, b) => (b[1].HP - a[1].HP || a[0].localeCompare(b[0])));
 
     for (let hero of sortedHeroes) {
         console.log(`${hero[0]}`);
