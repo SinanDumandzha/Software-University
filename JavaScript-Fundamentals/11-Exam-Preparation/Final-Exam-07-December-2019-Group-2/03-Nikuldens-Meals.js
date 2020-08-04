@@ -21,7 +21,7 @@ function mealsResult(input) {
                 if (feedbacksResult[guest]) {
                     if (feedbacksResult[guest].includes(meal)) {
                         let indexOfUnlikedMeal = Number(feedbacksResult[guest].indexOf(meal));
-                        delete feedbacksResult[guest][indexOfUnlikedMeal];
+                        feedbacksResult[guest].splice(indexOfUnlikedMeal, 1);
                         unlikedMealsCount++;
                         console.log(`${guest} doesn't like the ${meal}.`);
                     } else {
@@ -30,12 +30,12 @@ function mealsResult(input) {
                 } else {
                     console.log(`${guest} is not at the party.`);
                 }
+                break;
         }
         currentFeedback = feedbacks.shift();
     }
 
     let sortedResults = Object.entries(feedbacksResult).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
-    sortedResults.map(x => x[1] = [...new Set(x[1])]);
 
     for (let kvp of sortedResults) {
         console.log(`${kvp[0]}: ${kvp[1].join(', ')}`);
