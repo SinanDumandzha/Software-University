@@ -25,6 +25,7 @@ function attachEvents() {
     async function updateCatch(event) {
         const catchId = event.currentTarget.parentNode.getAttribute('data-id');
         const currentCatch = event.currentTarget.parentNode;
+
         const response = await createResponse(currentCatch.children, 'PUT', `https://fisher-game.firebaseio.com/catches/${catchId}.json`);
         handler(response);
         loadCatches();
@@ -34,7 +35,9 @@ function attachEvents() {
         const headers = {
             method: 'DELETE'
         };
+
         const catchId = event.currentTarget.parentNode.getAttribute('data-id');
+
         const response = await fetch(`https://fisher-game.firebaseio.com/catches/${catchId}.json`, headers);
         handler(response);
         loadCatches();
@@ -68,8 +71,10 @@ function attachEvents() {
                 addingToDiv('Location', ['input', 'location', 'text', location], idDiv);
                 addingToDiv('Bait', ['input', 'bait', 'text', bait], idDiv);
                 addingToDiv('Capture Time', ['input', 'captureTime', 'number', captureTime], idDiv);
+
                 const updateBtn = createButtonElement('update', 'Update');
                 const deleteBtn = createButtonElement('delete', 'Delete');
+
                 idDiv.append(updateBtn, deleteBtn);
                 catches.append(idDiv);
             });
@@ -79,12 +84,14 @@ function attachEvents() {
             const label = createLabelElement(name);
             const input = createElement(inputDetails[0], inputDetails[1], inputDetails[2], inputDetails[3]);
             const hr = createElement('hr');
+
             idDiv.append(label, input, hr);
         }
 
         function createLabelElement(textContent) {
             const label = document.createElement('label');
             label.textContent = textContent;
+
             return label;
         }
 
@@ -93,16 +100,20 @@ function attachEvents() {
             button.textContent = textContent;
             button.className = className;
             button.className === 'update' ? button.addEventListener('click', updateCatch) : button.addEventListener('click', deleteCatch);
+
             return button;
         }
 
         function createElement(tagName, className, type, value) {
             const element = document.createElement(tagName);
+
             if (className) {
                 element.className = className;
             }
+
             element.type = type;
             element.value = value;
+
             return element;
         }
     }
@@ -115,6 +126,7 @@ function attachEvents() {
                 acc[prop] = curr.value;
                 return acc;
             }, {});
+
         const headers = {
             method,
             headers: {
@@ -131,6 +143,7 @@ function attachEvents() {
             alert('Try again, please...');
             throw new Error('Something wrong');
         }
+
         return response.json();
     }
 
