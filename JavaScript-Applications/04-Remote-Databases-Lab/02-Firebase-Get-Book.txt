@@ -1,0 +1,7 @@
+Request: GET https://testapp-57358.firebaseio.com/Books/1/.json
+
+Result: 
+{
+    "author": "Ivan Vazov",
+    "title": "Under th Yoke"
+}

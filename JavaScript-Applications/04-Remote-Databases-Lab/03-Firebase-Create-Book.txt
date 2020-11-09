@@ -1,0 +1,22 @@
+Request: PUT https://testapp-57358.firebaseio.com/Books/.json
+
+{
+    "title": "New Title",
+    "author": "New Author"
+}
+
+Result: 
+{
+    "1": {
+        "author": "Ivan Vazov",
+        "title": "Under th Yoke"
+    },
+    "2": {
+        "author": "Svetlin Nakov & Co.",
+        "title": "C# Fundamentals"
+    },
+    "-MLi3k02sc_KWbSDDhcU": {
+        "author": "New Author",
+        "title": "New Title"
+    }
+}

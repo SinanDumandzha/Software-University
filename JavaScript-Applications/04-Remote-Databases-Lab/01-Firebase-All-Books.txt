@@ -1,0 +1,15 @@
+Request: GET https://testapp-57358.firebaseio.com/.json
+
+Result: 
+{
+    "Books": {
+        "1": {
+            "author": "Ivan Vazov",
+            "title": "Under th Yoke"
+        },
+        "2": {
+            "author": "Svetlin Nakov & Co.",
+            "title": "C# Fundamentals"
+        }
+    }
+}

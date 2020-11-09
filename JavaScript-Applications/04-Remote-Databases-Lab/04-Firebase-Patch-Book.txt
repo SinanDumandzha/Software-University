@@ -1,0 +1,23 @@
+Request: PATCH https://testapp-57358.firebaseio.com/Books/-MLi3k02sc_KWbSDDhcU/.json
+
+{
+    "year": "1981",
+    "author": "Author Changed"
+}
+
+Result:
+{
+    "1": {
+        "author": "Ivan Vazov",
+        "title": "Under th Yoke"
+    },
+    "2": {
+        "author": "Svetlin Nakov & Co.",
+        "title": "C# Fundamentals"
+    },
+    "-MLi3k02sc_KWbSDDhcU": {
+        "author": "Author Changed",
+        "title": "New Title",
+        "year": "1981"
+    }
+}

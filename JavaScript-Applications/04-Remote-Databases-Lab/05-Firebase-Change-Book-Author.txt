@@ -1,0 +1,25 @@
+Request: PUT https://testapp-57358.firebaseio.com/Books/7/author/.json
+
+"New author was assigned"
+
+Result:
+{
+    "1": {
+        "author": "Ivan Vazov",
+        "title": "Under th Yoke"
+    },
+    "2": {
+        "author": "Svetlin Nakov & Co.",
+        "title": "C# Fundamentals"
+    },
+    "7": {
+        "author": "New author was assigned",
+        "title": "New Title"
+    },
+    "-MLi3k02sc_KWbSDDhcU": {
+        "author": "Author Changed",
+        "title": "New Title",
+        "year": "1981"
+    }
+}
+
