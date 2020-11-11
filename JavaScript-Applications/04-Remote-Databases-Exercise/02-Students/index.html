@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+</head>
+
+<body>
+    <div id="notification">
+        <h3></h3>
+    </div>
+    <table id="results">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Faculty Number</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div id="addStudent">
+        <button>Add new student</button>
+    </div>
+    <form id="addStudent-form" style="display: none">
+        <h3>Add New Student</h3>
+        <label>First Name: </label>
+        <input type="text" id="firstName" placeholder="Enter first name" pattern="^[A-Za-z]+$" required minlength="3">
+        <label>Last Name: </label>
+        <input type="text" id="lastName" placeholder="Enter last name" pattern="^[A-Za-z]+$" required minlength="3">
+        <label>Faculty Number: </label>
+        <input type="number" id="facultyNumber" placeholder="Enter faculty number">
+        <label>Grade: </label>
+        <input type="number" id="grade" placeholder="Enter grade">
+        <button id="add">Add</button>
+    </form>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDE8pUVxqjayaVhsZDkWeXf8d379u7Mxq4",
+            authDomain: "students-app-311c5.firebaseapp.com",
+            databaseURL: "https://students-app-311c5.firebaseio.com",
+            projectId: "students-app-311c5",
+            storageBucket: "students-app-311c5.appspot.com",
+            messagingSenderId: "806704645133",
+            appId: "1:806704645133:web:094b81dd6d7666933c4144"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./app.js"></script>
+</body>
+
+</html>

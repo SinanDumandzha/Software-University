@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+</head>
+
+<body>
+    <div class="welcome" style="display: block">
+        <h1>Welcome to the Page</h1>
+        <div class="options">
+            <button class="login-btn">Log in</button>
+            <p>or</p>
+            <button class="register-btn">Register</button>
+        </div>
+    </div>
+    <div class="notification" style=" display: none">
+        <h3 class="message"></h3>
+    </div>
+    <div class="login" style="display: none">
+        <h2 class="login-header">Log in</h2>
+        <form class="login-container">
+            <p><input type="email" placeholder="Email"></p>
+            <p><input type="password" placeholder="Password"></p>
+            <p><input type="submit" value="Log in"></p>
+        </form>
+    </div>
+    <div class="logout" style="display: none">
+        <button class="logout-btn">Log out</button>
+    </div>
+    <div class="register" style="display: none">
+        <h2 class="register-header">Register</h2>
+        <form class="register-container">
+            <p><input type="email" placeholder="Email"></p>
+            <p><input type="password" placeholder="Password"></p>
+            <p><input type="submit" value="Register"></p>
+        </form>
+    </div>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBVNN9sIXCSdcYxe9mzJfq-_2VQug0Pxlk",
+            authDomain: "testapp-57358.firebaseapp.com",
+            databaseURL: "https://testapp-57358.firebaseio.com",
+            projectId: "testapp-57358",
+            storageBucket: "testapp-57358.appspot.com",
+            messagingSenderId: "370600872656",
+            appId: "1:370600872656:web:d898430bc97f4c79d7acd5"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
