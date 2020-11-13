@@ -1,12 +1,3 @@
-(() => {
-    renderCatTemplate();
-
-    function renderCatTemplate() {
-        // TODO: Render cat template and attach events
-    }
-
-})
-
 let allCatsSection = document.querySelector('#allCats');
 
 Promise.all([getTemplate('./template.hbs'), getTemplate('./cat.hbs')])
