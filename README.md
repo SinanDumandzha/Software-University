@@ -9,5 +9,5 @@
 
 - Programming Basics with JavaScript (7 March - 4 May 2020)
 - JavaScript Fundamentals (18 May - 10 August 2020)
-- JavaScript Advanced (14 September - 24 Octomber 2020)
-- JavaScript Applications (26 Octomber - 6 December 2020)
+- JavaScript Advanced (14 September - 24 October 2020)
+- JavaScript Applications (26 October - 6 December 2020)
