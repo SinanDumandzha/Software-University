@@ -1,47 +1,51 @@
 function addEventListeners() {
-    let navigationTemplate = Handlebars.compile(document.getElementById('navigation-template').innerHTML);
-    let movieCardTemplate = Handlebars.compile(document.getElementById('movie-card-template').innerHTML);
+    let navigationTemplate = Handlebars.compile(
+        document.getElementById("navigation-template").innerHTML
+    );
+    let movieCardTemplate = Handlebars.compile(
+        document.getElementById("movie-card-template").innerHTML
+    );
 
-    Handlebars.registerPartial('navigation-template', navigationTemplate);
-    Handlebars.registerPartial('movie-card-template', movieCardTemplate);
+    Handlebars.registerPartial("navigation-template", navigationTemplate);
+    Handlebars.registerPartial("movie-card-template", movieCardTemplate);
 
-    navigate(location.pathname == '/' ? 'home' : location.pathname.slice(1));
+    navigate(location.pathname == "/" ? "home" : location.pathname.slice(1));
 }
 
-function showError(message) {
+function showError(message) {}
 
-}
-
-function showNotification(type, message) {
+function showNotification(message, type) {
     let notification;
 
     switch (type) {
-        case 'error':
-            notification = document.querySelector('#errorBoxSection');
+        case "error":
+            notification = document.querySelector("#errorBoxSection");
             break;
         default:
-            notification = document.querySelector('#succesNotification');
+            notification = document.querySelector("#succesNotification");
             break;
     }
 
     notification.firstElementChild.innerText = message;
-    notification.style.display = 'block';
+    notification.style.display = "block";
 
     setTimeout(() => {
-        notification.style.display = 'none';
+        notification.style.display = "none";
     });
 }
 
 function navigateHandler(e) {
     e.preventDefault();
 
-    if (e.target.tagName != 'A' && e.target.tagName != 'BUTTON') {
+    if (e.target.tagName != "A" && e.target.tagName != "BUTTON") {
         return;
     }
 
     let url;
 
-    e.target.tagName == 'A' ? url = new URL(e.target.href) : url = new URL(e.target.parentElement.href);
+    e.target.tagName == "A"
+        ? (url = new URL(e.target.href))
+        : (url = new URL(e.target.parentElement.href));
 
     navigate(url.pathname.slice(1));
 }
@@ -49,116 +53,119 @@ function navigateHandler(e) {
 function onLoginSubmit(e) {
     e.preventDefault();
 
-    let formData = new FormData(document.forms['login-form']);
+    let formData = new FormData(document.forms["login-form"]);
 
-    let email = formData.get('email');
-    let password = formData.get('password');
+    let email = formData.get("email");
+    let password = formData.get("password");
 
-    authService.login(email, password)
-        .then(data => {
-            navigate('home');
-        });
+    authService.login(email, password).then((data) => {
+        navigate("home");
+        showNotification("Login successful.");
+    });
 }
 
 function onRegisterSubmit(e) {
     e.preventDefault();
 
-    let formData = new FormData(document.forms['register-form']);
+    let formData = new FormData(document.forms["register-form"]);
 
-    let email = formData.get('email');
-    let password = formData.get('password');
-    let repeatPassword = formData.get('repeatPassword');
+    let email = formData.get("email");
+    let password = formData.get("password");
+    let repeatPassword = formData.get("repeatPassword");
 
     if (password !== repeatPassword) {
+        showNotification("Passwords must be same", "error");
         return;
     }
 
-    authService.register(email, password, repeatPassword)
-        .then(data => {
-            navigate('login');
-        });
+    authService.register(email, password, repeatPassword).then((data) => {
+        navigate("login");
+        showNotification("Successful registration!");
+    });
 }
 
 function onAddMovieSubmit(e) {
     e.preventDefault();
 
-    let formData = new FormData(document.forms['add-movie-form']);
+    let formData = new FormData(document.forms["add-movie-form"]);
 
-    let title = formData.get('title');
-    let description = formData.get('description');
-    let imageUrl = formData.get('imageUrl');
+    let title = formData.get("title");
+    let description = formData.get("description");
+    let imageUrl = formData.get("imageUrl");
 
-    let {
-        email
-    } = authService.getData()
+    let { email } = authService.getData();
 
-    if (title == '' || description == '' || imageUrl == '') {
+    if (title == "" || description == "" || imageUrl == "") {
         return;
     }
 
-    movieService.addMovie({
-        creator: email,
-        title,
-        description,
-        imageUrl,
-    }).then(res => {
-        navigate('home');
-    });
+    movieService
+        .addMovie({
+            creator: email,
+            title,
+            description,
+            imageUrl,
+        })
+        .then((res) => {
+            navigate("home");
+            showNotification("Created successfully!");
+        });
 }
 
 function onEditMovieSubmit(e, id) {
     e.preventDefault();
 
-    let formData = new FormData(document.forms['edit-movie-form']);
+    let formData = new FormData(document.forms["edit-movie-form"]);
 
-    let title = formData.get('title');
-    let description = formData.get('description');
-    let imageUrl = formData.get('imageUrl');
+    let title = formData.get("title");
+    let description = formData.get("description");
+    let imageUrl = formData.get("imageUrl");
 
-    if (title == '' || description == '' || imageUrl == '') {
+    if (title == "" || description == "" || imageUrl == "") {
         return;
     }
 
-    movieService.editMovie(id, {
-        title,
-        description,
-        imageUrl
-    }).then(res => {
-        navigate(`details/${id}`);
-    });
+    movieService
+        .editMovie(id, {
+            title,
+            description,
+            imageUrl,
+        })
+        .then((res) => {
+            navigate(`details/${id}`);
+            showNotification("Eddited successfully");
+        });
 }
 
 function deleteMovie(e) {
     e.preventDefault();
 
     let id = e.target.dataset.id;
-    console.log(id)
+    console.log(id);
 
-    movieService.deleteMovie(id)
-        .then(res => {
-            navigate('home');
-        });
+    movieService.deleteMovie(id).then((res) => {
+        navigate("home");
+        showNotification("Deleted successfully");
+    });
 }
 
 function onMovieLike(e, movieId) {
     e.preventDefault();
 
-    let {
-        email
-    } = authService.getData();
+    let { email } = authService.getData();
 
-    movieService.likeMovie(movieId, email)
-        .than(res => {
-            navigate(`details/${movieId}`);
-        });
+    movieService.likeMovie(movieId, email).than((res) => {
+        navigate(`details/${movieId}`);
+        showNotification("Liked successfully");
+    });
 }
 
 function onMovieSearchSubmit(e) {
     e.preventDefault();
 
-    let formData = new FormData(document.forms['search-movie-form']);
+    let formData = new FormData(document.forms["search-movie-form"]);
 
-    let searchText = formData.get('search-text');
+    let searchText = formData.get("search-text");
 
     navigate(`home?search=${searchText}`);
 }
